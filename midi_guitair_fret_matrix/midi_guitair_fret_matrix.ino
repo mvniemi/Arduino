@@ -3,7 +3,7 @@
 #define VELOCITY 80
 #define noteON 144
 #define noteOFF 128 
-
+#define BASENOTE
 char *notes[]  = {"F","F#","G","G#","A","A#","B","C","C#","D","D#","E","F","F#","G","G#","A","A#","B"};
 int stringOffsets[] = {0,5,10,15,19,25};
 int stringPins[] = {3,4,5,6,7,8};
@@ -48,9 +48,9 @@ void loop() {
    //Turn String Low
    digitalWrite(stringPins[i], LOW);
    if (newNote != currentNote[i]){
-      MIDImessage(noteOFF, currentNote[i]+stringOffsets[i], VELOCITY);
+      MIDImessage(noteOFF, currentNote[i]+stringOffsets[i]+BASENOTE, VELOCITY);
       if (newNote != 0){
-        MIDImessage(noteON, newNote+stringOffsets[i], VELOCITY);
+        MIDImessage(noteON, newNote+stringOffsets[i]+BASENOTE, VELOCITY);
       }
       currentNote[i] = newNote;
    }
